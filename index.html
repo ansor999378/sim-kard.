@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium SIM Cards</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#F59E0B'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+padding-bottom: 70px;
+}
+@keyframes slideIn {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.number-card {
+animation: slideIn 0.5s ease-out forwards;
+animation-delay: calc(var(--animation-order) * 0.1s);
+opacity: 0;
+}
+.language-option {
+transition: opacity 0.3s ease;
+}
+.voice-pulse {
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0% {
+transform: scale(1);
+opacity: 1;
+}
+50% {
+transform: scale(1.1);
+opacity: 0.8;
+}
+100% {
+transform: scale(1);
+opacity: 1;
+}
+}
+.service-card {
+transition: all 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header/Nav Bar -->
+<nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+<div class="max-w-[375px] mx-auto px-4 py-3 flex justify-between items-center">
+<div class="flex items-center">
+<span class="text-2xl font-['Pacifico'] text-primary">logo</span>
+</div>
+<a href="tel:88005553535" class="flex items-center text-primary">
+<i class="ri-customer-service-2-line mr-1"></i>
+<span class="text-sm">8 800 555 35 35</span>
+</a>
+<div class="flex items-center space-x-3">
+<button id="voice-assistant-btn" class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full cursor-pointer">
+<i class="ri-mic-line ri-lg"></i>
+</button>
+<div class="relative">
+<button id="language-selector" class="flex items-center space-x-1 cursor-pointer">
+<span id="current-lang-flag" class="w-6 h-6 flex items-center justify-center">
+<i class="ri-flag-line ri-lg"></i>
+</span>
+<span id="current-lang-text" class="text-sm">RU</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div id="language-dropdown" class="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-md hidden">
+<div class="py-1">
+<button data-lang="ru" class="language-option w-full px-4 py-2 text-sm text-left flex items-center space-x-2 hover:bg-gray-100 cursor-pointer">
+<span class="w-5 h-5 flex items-center justify-center">
+<i class="ri-flag-line"></i>
+</span>
+<span>Русский</span>
+</button>
+<button data-lang="uz" class="language-option w-full px-4 py-2 text-sm text-left flex items-center space-x-2 hover:bg-gray-100 cursor-pointer">
+<span class="w-5 h-5 flex items-center justify-center">
+<i class="ri-flag-line"></i>
+</span>
+<span>O'zbekcha</span>
+</button>
+<button data-lang="tj" class="language-option w-full px-4 py-2 text-sm text-left flex items-center space-x-2 hover:bg-gray-100 cursor-pointer">
+<span class="w-5 h-5 flex items-center justify-center">
+<i class="ri-flag-line"></i>
+</span>
+<span>Тоҷикӣ</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-[375px] mx-auto pt-16">
+<!-- Hero Section -->
+<section class="px-4 py-6">
+<div class="relative rounded-lg overflow-hidden h-48 mb-6">
+<img src="https://readdy.ai/api/search-image?query=luxury%20mobile%20phone%20SIM%20cards%20with%20golden%20numbers%2C%20premium%20service%2C%20professional%20product%20photography%2C%20soft%20lighting%2C%20isolated%20on%20gradient%20blue%20background%2C%20centered%20composition&width=375&height=192&seq=1&orientation=landscape" alt="Premium SIM Cards" class="w-full h-full object-cover object-top">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent flex flex-col justify-end p-4">
+<h1 class="text-2xl font-bold text-white mb-2" id="hero-title">Премиум номера телефонов</h1>
+<p class="text-white text-sm mb-3" id="hero-subtitle">Эксклюзивные номера для особенных клиентов</p>
+<div class="flex">
+<button class="bg-white text-primary px-4 py-2 rounded-button text-sm font-medium !rounded-button cursor-pointer">
+<span id="hero-button">Найти номер</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="bg-gray-50 rounded-lg p-3 mb-6">
+<div class="relative">
+<input type="text" id="search-input" placeholder="Поиск номера" class="w-full pl-10 pr-4 py-2 bg-white border-none rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+<div class="flex mt-2 space-x-2 overflow-x-auto py-1 no-scrollbar">
+<button onclick="filterByOperator('all')" class="bg-primary text-white px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full">Все</button>
+<button onclick="filterByOperator('mts')" class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full">МТС</button>
+<button onclick="filterByOperator('megafon')" class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full">МегаФон</button>
+<button onclick="filterByOperator('beeline')" class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full">Билайн</button>
+<button onclick="filterByOperator('tele2')" class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full">Tele2</button>
+<button onclick="filterByOperator('yota')" class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full">Yota</button>
+</div>
+</div>
+<div class="flex mt-2 space-x-2 overflow-x-auto py-1 no-scrollbar">
+<button class="bg-primary text-white px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full cursor-pointer">
+<span id="filter-all">Все</span>
+</button>
+<button class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full cursor-pointer">
+<span id="filter-platinum">Платиновые</span>
+</button>
+<button class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full cursor-pointer">
+<span id="filter-gold">Золотые</span>
+</button>
+<button class="bg-white text-gray-700 px-3 py-1 rounded-full text-xs whitespace-nowrap !rounded-full cursor-pointer">
+<span id="filter-silver">Серебряные</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Featured Numbers -->
+<section class="px-4 mb-6">
+<h2 class="text-lg font-semibold mb-4" id="featured-title">Популярные номера</h2>
+<div class="space-y-3">
+<!-- Number Card Yota -->
+
+<div class="number-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg" style="--animation-order: 0">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-medium px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full">Платиновый</span>
+<span class="text-xs font-medium px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full">Yota</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line text-gray-400"></i>
+</div>
+</div>
+<p class="text-lg font-semibold text-center my-2">+7 999 888 8888</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-medium">42,000 ₽</span>
+<button onclick="addToCart('0', '+7 999 888 8888', 42000, 'Yota')" class="bg-primary text-white px-2 py-1 rounded-button text-xs !rounded-button cursor-pointer">
+<span>Купить</span>
+</button>
+</div>
+</div>
+<!-- Number Card 1 -->
+<div class="number-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg" style="--animation-order: 1">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-medium px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-full" id="card1-tag">Золотой</span>
+<span class="text-xs font-medium px-2 py-0.5 bg-red-100 text-red-800 rounded-full">МТС</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line text-gray-400"></i>
+</div>
+</div>
+<p class="text-lg font-semibold text-center my-2">+7 999 777 7777</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-medium">35,000 ₽</span>
+<button onclick="addToCart('1', '+7 999 777 7777', 35000, 'МТС')" class="bg-primary text-white px-2 py-1 rounded-button text-xs !rounded-button cursor-pointer">
+<span id="card-buy">Купить</span>
+</button>
+</div>
+</div>
+<!-- Number Card 2 -->
+<div class="number-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg" style="--animation-order: 2">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-medium px-2 py-0.5 bg-gray-100 text-gray-800 rounded-full" id="card2-tag">Серебряный</span>
+<span class="text-xs font-medium px-2 py-0.5 bg-green-100 text-green-800 rounded-full">МегаФон</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line text-gray-400"></i>
+</div>
+</div>
+<p class="text-lg font-semibold text-center my-2">+7 925 555 5555</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-medium">22,000 ₽</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs !rounded-button cursor-pointer">
+<span id="card-buy2">Купить</span>
+</button>
+</div>
+</div>
+<!-- Number Card 3 -->
+<div class="number-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg" style="--animation-order: 3">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-medium px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full" id="card3-tag">Платиновый</span>
+<span class="text-xs font-medium px-2 py-0.5 bg-black text-white rounded-full">Tele2</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line text-gray-400"></i>
+</div>
+</div>
+<p class="text-lg font-semibold text-center my-2">+7 903 000 0000</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-medium">45,000 ₽</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs !rounded-button cursor-pointer">
+<span id="card-buy3">Купить</span>
+</button>
+</div>
+</div>
+<!-- Number Card 4 -->
+<div class="number-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg" style="--animation-order: 4">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-medium px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-full" id="card4-tag">Золотой</span>
+<span class="text-xs font-medium px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-full">Билайн</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line text-gray-400"></i>
+</div>
+</div>
+<p class="text-lg font-semibold text-center my-2">+7 985 888 8888</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-medium">30,000 ₽</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs !rounded-button cursor-pointer">
+<span id="card-buy4">Купить</span>
+</button>
+</div>
+</div>
+</div>
+<div class="text-center mt-4">
+<button class="text-primary font-medium text-sm flex items-center justify-center mx-auto cursor-pointer">
+<span id="view-more">Показать больше</span>
+<i class="ri-arrow-right-s-line ml-1"></i>
+</button>
+</div>
+</section>
+<!-- Services Section -->
+<section class="px-4 mb-6">
+<h2 class="text-lg font-semibold mb-4" id="services-title">Наши услуги</h2>
+<div class="space-y-3">
+<!-- Service Card 1 -->
+<div class="service-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer">
+<div class="flex items-start">
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
+<i class="ri-sim-card-line text-primary ri-lg"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium text-base mb-1" id="service1-title">Продажа SIM-карт</h3>
+<p class="text-sm text-gray-600 mb-2" id="service1-desc">Широкий выбор премиальных номеров от ведущих операторов России</p>
+<button class="text-primary text-xs font-medium flex items-center cursor-pointer">
+<span id="service-learn-more">Подробнее</span>
+<i class="ri-arrow-right-s-line ml-1"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="service-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer">
+<div class="flex items-start">
+<div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center mr-3">
+<i class="ri-phone-line text-secondary ri-lg"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium text-base mb-1" id="service2-title">Виртуальные номера</h3>
+<p class="text-sm text-gray-600 mb-2" id="service2-desc">Получайте звонки на виртуальный номер с переадресацией на ваш телефон</p>
+<button class="text-primary text-xs font-medium flex items-center cursor-pointer">
+<span id="service-learn-more2">Подробнее</span>
+<i class="ri-arrow-right-s-line ml-1"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="service-card bg-white rounded-lg shadow-sm p-4 border border-gray-100 cursor-pointer">
+<div class="flex items-start">
+<div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+<i class="ri-customer-service-line text-green-600 ri-lg"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium text-base mb-1" id="service3-title">Сервис звонков</h3>
+<p class="text-sm text-gray-600 mb-2" id="service3-desc">Отправка и прием звонков через наш сервис с использованием премиум номеров</p>
+<button class="text-primary text-xs font-medium flex items-center cursor-pointer">
+<span id="service-learn-more3">Подробнее</span>
+<i class="ri-arrow-right-s-line ml-1"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="px-4 mb-6">
+<h2 class="text-lg font-semibold mb-4" id="testimonials-title">Отзывы клиентов</h2>
+<div class="bg-white rounded-lg shadow-sm p-4 border border-gray-100">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+<i class="ri-user-line text-gray-500"></i>
+</div>
+<div>
+<p class="font-medium text-sm">Алексей Смирнов</p>
+<div class="flex">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+</div>
+</div>
+</div>
+<p class="text-sm text-gray-600 mb-2" id="testimonial1">Приобрел золотой номер для бизнеса. Отличный сервис, быстрое оформление. Клиенты сразу запоминают мой номер!</p>
+<p class="text-xs text-gray-400">10 июня 2025</p>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-4 mb-10">
+<h2 class="text-lg font-semibold mb-4" id="faq-title">Часто задаваемые вопросы</h2>
+<div class="space-y-3">
+<div class="bg-white rounded-lg shadow-sm p-4 border border-gray-100">
+<button class="flex justify-between items-center w-full text-left cursor-pointer" onclick="toggleFaq(1)">
+<span class="font-medium text-sm" id="faq1-q">Как приобрести SIM-карту?</span>
+<i class="ri-arrow-down-s-line" id="faq1-icon"></i>
+</button>
+<div class="mt-2 hidden" id="faq1-a-container">
+<p class="text-sm text-gray-600" id="faq1-a">Вы можете выбрать номер на нашем сайте, оформить заказ онлайн и получить SIM-карту с доставкой или забрать в одном из наших офисов в Москве.</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-4 border border-gray-100">
+<button class="flex justify-between items-center w-full text-left cursor-pointer" onclick="toggleFaq(2)">
+<span class="font-medium text-sm" id="faq2-q">Какие документы нужны для оформления?</span>
+<i class="ri-arrow-down-s-line" id="faq2-icon"></i>
+</button>
+<div class="mt-2 hidden" id="faq2-a-container">
+<p class="text-sm text-gray-600" id="faq2-a">Для оформления SIM-карты потребуется паспорт гражданина РФ или иностранного гражданина с регистрацией.</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-4 border border-gray-100">
+<button class="flex justify-between items-center w-full text-left cursor-pointer" onclick="toggleFaq(3)">
+<span class="font-medium text-sm" id="faq3-q">Как работает сервис виртуальных номеров?</span>
+<i class="ri-arrow-down-s-line" id="faq3-icon"></i>
+</button>
+<div class="mt-2 hidden" id="faq3-a-container">
+<p class="text-sm text-gray-600" id="faq3-a">Виртуальный номер работает через переадресацию. Звонки на ваш виртуальный номер автоматически перенаправляются на ваш реальный телефон.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Voice Assistant Modal -->
+<div id="voice-assistant-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg w-[300px] p-5">
+<div class="text-center mb-4">
+<div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center voice-pulse">
+<i class="ri-mic-line text-primary ri-2x"></i>
+</div>
+<h3 class="font-medium mt-3" id="voice-assistant-title">Голосовой помощник</h3>
+<p class="text-sm text-gray-600 mt-1" id="voice-assistant-subtitle">Скажите, чем я могу помочь</p>
+</div>
+<div class="flex space-x-2">
+<button id="voice-cancel" class="flex-1 py-2 px-4 border border-gray-300 rounded-button text-sm font-medium !rounded-button cursor-pointer">
+<span id="voice-cancel-text">Отмена</span>
+</button>
+<button id="voice-stop" class="flex-1 py-2 px-4 bg-primary text-white rounded-button text-sm font-medium !rounded-button cursor-pointer">
+<span id="voice-stop-text">Стоп</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Tab Bar -->
+<nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-40">
+<div class="max-w-[375px] mx-auto grid grid-cols-5">
+<a href="#" class="flex flex-col items-center justify-center py-2 text-primary cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1" id="tab-home">Главная</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center py-2 text-gray-500 cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-search-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1" id="tab-search">Поиск</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center py-2 text-gray-500 cursor-pointer relative">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-shopping-cart-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1" id="tab-cart">Корзина</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center py-2 text-gray-500 cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1" id="tab-favorites">Избранное</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center py-2 text-gray-500 cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1" id="tab-profile">Профиль</span>
+</a>
+</div>
+</nav>
+<!-- Cart Modal -->
+<div id="cart-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg w-[340px] max-h-[600px] overflow-hidden">
+<div class="p-4 border-b border-gray-100">
+<div class="flex justify-between items-center">
+<h3 class="font-medium" id="cart-title">Корзина</h3>
+<button onclick="closeCart()" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div id="cart-items" class="p-4 space-y-3 overflow-y-auto max-h-[400px]">
+<!-- Cart items will be inserted here -->
+</div>
+<div class="p-4 border-t border-gray-100">
+<div class="flex justify-between items-center mb-4">
+<span class="font-medium" id="cart-total-title">Итого:</span>
+<span class="font-medium text-primary" id="cart-total">0 ₽</span>
+</div>
+<button onclick="proceedToCheckout()" class="w-full bg-primary text-white py-3 rounded-button font-medium !rounded-button">
+<span id="checkout-button">Оформить заказ</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Payment Modal -->
+<div id="payment-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg w-[340px]">
+<div class="p-4 border-b border-gray-100">
+<div class="flex justify-between items-center">
+<h3 class="font-medium" id="payment-title">Способ оплаты</h3>
+<button onclick="closePayment()" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div class="p-4 space-y-3">
+<button onclick="payWithCard('mir')" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-primary">
+<div class="flex items-center">
+<i class="ri-bank-card-line text-primary mr-3"></i>
+<span>Карта МИР</span>
+</div>
+<i class="ri-arrow-right-s-line"></i>
+</button>
+<button onclick="payWithCard('sber')" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-primary">
+<div class="flex items-center">
+<i class="ri-secure-payment-line text-primary mr-3"></i>
+<span>Сбербанк</span>
+</div>
+<i class="ri-arrow-right-s-line"></i>
+</button>
+<button onclick="payWithCard('tinkoff')" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-primary">
+<div class="flex items-center">
+<i class="ri-bank-card-line text-primary mr-3"></i>
+<span>Тинькофф</span>
+</div>
+<i class="ri-arrow-right-s-line"></i>
+</button>
+<button onclick="payWithSBP()" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-primary">
+<div class="flex items-center">
+<i class="ri-qr-code-line text-primary mr-3"></i>
+<span>Система быстрых платежей (СБП)</span>
+</div>
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Scripts -->
+<script id="cart-handler">
+let cart = [];
+let total = 0;
+function addToCart(id, number, price, operator) {
+const item = {id, number, price, operator};
+cart.push(item);
+total += price;
+updateCartBadge();
+showAddedToCartNotification();
+saveCartToLocalStorage();
+showCart(); // Show cart modal immediately after adding item
+}
+function showCart() {
+const cartModal = document.getElementById('cart-modal');
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+cartItems.innerHTML = '';
+if (cart.length === 0) {
+cartItems.innerHTML = `
+<div class="text-center py-8">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gray-100 rounded-full">
+<i class="ri-shopping-cart-line text-gray-400 ri-2x"></i>
+</div>
+<p class="text-gray-600 mb-4">Ваша корзина пуста</p>
+<button onclick="closeCart()" class="text-primary font-medium text-sm">
+Перейти к выбору номеров
+</button>
+</div>`;
+} else {
+cart.forEach((item, index) => {
+const itemElement = document.createElement('div');
+itemElement.className = 'flex justify-between items-center p-3 bg-gray-50 rounded-lg';
+itemElement.innerHTML = `
+<div>
+<p class="font-medium">${item.number}</p>
+<p class="text-sm text-gray-600">${item.operator}</p>
+</div>
+<div class="flex items-center">
+<span class="text-primary font-medium mr-3">${item.price.toLocaleString()} ₽</span>
+<button onclick="removeFromCart(${index})" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+`;
+cartItems.appendChild(itemElement);
+});
+}
+cartTotal.textContent = `${total.toLocaleString()} ₽`;
+cartModal.classList.remove('hidden');
+}
+function saveCartToLocalStorage() {
+localStorage.setItem('cart', JSON.stringify(cart));
+localStorage.setItem('total', total);
+}
+function loadCartFromLocalStorage() {
+const savedCart = localStorage.getItem('cart');
+const savedTotal = localStorage.getItem('total');
+if (savedCart) {
+cart = JSON.parse(savedCart);
+total = Number(savedTotal);
+updateCartBadge();
+}
+}
+document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
+function updateCartBadge() {
+const cartTab = document.querySelector('#tab-cart');
+const badge = document.querySelector('#cart-badge');
+if (cart.length > 0) {
+if (!badge) {
+const newBadge = document.createElement('span');
+newBadge.id = 'cart-badge';
+newBadge.className = 'absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full';
+newBadge.textContent = cart.length;
+cartTab.style.position = 'relative';
+cartTab.appendChild(newBadge);
+} else {
+badge.textContent = cart.length;
+}
+}
+}
+function showCart() {
+const cartModal = document.getElementById('cart-modal');
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+cartItems.innerHTML = '';
+if (cart.length === 0) {
+cartItems.innerHTML = `
+<div class="text-center py-8">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gray-100 rounded-full">
+<i class="ri-shopping-cart-line text-gray-400 ri-2x"></i>
+</div>
+<p class="text-gray-600 mb-4">Ваша корзина пуста</p>
+<button onclick="closeCart()" class="text-primary font-medium text-sm">
+Перейти к выбору номеров
+</button>
+</div>`;
+} else {
+cart.forEach((item, index) => {
+const itemElement = document.createElement('div');
+itemElement.className = 'flex justify-between items-center p-3 bg-gray-50 rounded-lg';
+itemElement.innerHTML = `
+<div>
+<p class="font-medium">${item.number}</p>
+<p class="text-sm text-gray-600">${item.operator}</p>
+</div>
+<div class="flex items-center">
+<span class="text-primary font-medium mr-3">${item.price.toLocaleString()} ₽</span>
+<button onclick="removeFromCart(${index})" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+`;
+cartItems.appendChild(itemElement);
+});
+cartTotal.textContent = `${total.toLocaleString()} ₽`;
+cartModal.classList.remove('hidden');
+}
+function closeCart() {
+document.getElementById('cart-modal').classList.add('hidden');
+}
+function removeFromCart(index) {
+total -= cart[index].price;
+cart.splice(index, 1);
+updateCartBadge();
+saveCartToLocalStorage();
+showCart();
+if (cart.length === 0) {
+setTimeout(() => {
+closeCart();
+}, 2000);
+}
+}
+function proceedToCheckout() {
+closeCart();
+document.getElementById('payment-modal').classList.remove('hidden');
+}
+function closePayment() {
+document.getElementById('payment-modal').classList.add('hidden');
+}
+function payWithCard(type) {
+// Here you would integrate with the actual payment system
+closePayment();
+showSuccessNotification();
+}
+function payWithSBP() {
+// Here you would integrate with the SBP payment system
+closePayment();
+showSuccessNotification();
+}
+function showAddedToCartNotification() {
+// Show a temporary notification
+const notification = document.createElement('div');
+notification.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-full text-sm';
+notification.textContent = 'Добавлено в корзину';
+document.body.appendChild(notification);
+setTimeout(() => notification.remove(), 2000);
+}
+function showSuccessNotification() {
+const notification = document.createElement('div');
+notification.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-full text-sm z-[60]';
+notification.textContent = 'Заказ успешно оформлен';
+document.body.appendChild(notification);
+setTimeout(() => {
+notification.remove();
+closeCart();
+closePayment();
+}, 2000);
+cart = [];
+total = 0;
+updateCartBadge();
+saveCartToLocalStorage();
+}
+document.addEventListener('DOMContentLoaded', function() {
+const cartTab = document.getElementById('tab-cart').parentElement;
+cartTab.addEventListener('click', (e) => {
+e.preventDefault();
+showCart();
+});
+});
+</script>
+<script id="language-switcher">
+document.addEventListener('DOMContentLoaded', function() {
+const languageSelector = document.getElementById('language-selector');
+const languageDropdown = document.getElementById('language-dropdown');
+const languageOptions = document.querySelectorAll('.language-option');
+const currentLangText = document.getElementById('current-lang-text');
+// Language translations
+const translations = {
+ru: {
+'hero-title': 'Премиум номера телефонов',
+'hero-subtitle': 'Эксклюзивные номера для особенных клиентов',
+'hero-button': 'Найти номер',
+'featured-title': 'Популярные номера',
+'filter-all': 'Все',
+'filter-platinum': 'Платиновые',
+'filter-gold': 'Золотые',
+'filter-silver': 'Серебряные',
+'card1-tag': 'Золотой',
+'card2-tag': 'Серебряный',
+'card3-tag': 'Платиновый',
+'card4-tag': 'Золотой',
+'card-buy': 'Купить',
+'card-buy2': 'Купить',
+'card-buy3': 'Купить',
+'card-buy4': 'Купить',
+'view-more': 'Показать больше',
+'services-title': 'Наши услуги',
+'service1-title': 'Продажа SIM-карт',
+'service1-desc': 'Широкий выбор премиальных номеров от ведущих операторов России',
+'service2-title': 'Виртуальные номера',
+'service2-desc': 'Получайте звонки на виртуальный номер с переадресацией на ваш телефон',
+'service3-title': 'Сервис звонков',
+'service3-desc': 'Отправка и прием звонков через наш сервис с использованием премиум номеров',
+'service-learn-more': 'Подробнее',
+'service-learn-more2': 'Подробнее',
+'service-learn-more3': 'Подробнее',
+'testimonials-title': 'Отзывы клиентов',
+'testimonial1': 'Приобрел золотой номер для бизнеса. Отличный сервис, быстрое оформление. Клиенты сразу запоминают мой номер!',
+'faq-title': 'Часто задаваемые вопросы',
+'faq1-q': 'Как приобрести SIM-карту?',
+'faq1-a': 'Вы можете выбрать номер на нашем сайте, оформить заказ онлайн и получить SIM-карту с доставкой или забрать в одном из наших офисов в Москве.',
+'faq2-q': 'Какие документы нужны для оформления?',
+'faq2-a': 'Для оформления SIM-карты потребуется паспорт гражданина РФ или иностранного гражданина с регистрацией.',
+'faq3-q': 'Как работает сервис виртуальных номеров?',
+'faq3-a': 'Виртуальный номер работает через переадресацию. Звонки на ваш виртуальный номер автоматически перенаправляются на ваш реальный телефон.',
+'tab-home': 'Главная',
+'tab-search': 'Поиск',
+'tab-cart': 'Корзина',
+'tab-favorites': 'Избранное',
+'tab-profile': 'Профиль',
+'voice-assistant-title': 'Голосовой помощник',
+'voice-assistant-subtitle': 'Скажите, чем я могу помочь',
+'voice-cancel-text': 'Отмена',
+'voice-stop-text': 'Стоп',
+'search-input': 'Поиск номера'
+},
+uz: {
+'hero-title': 'Premium telefon raqamlari',
+'hero-subtitle': 'Maxsus mijozlar uchun eksklyuziv raqamlar',
+'hero-button': 'Raqam topish',
+'featured-title': 'Mashhur raqamlar',
+'filter-all': 'Barchasi',
+'filter-platinum': 'Platina',
+'filter-gold': 'Oltin',
+'filter-silver': 'Kumush',
+'card1-tag': 'Oltin',
+'card2-tag': 'Kumush',
+'card3-tag': 'Platina',
+'card4-tag': 'Oltin',
+'card-buy': 'Sotib olish',
+'card-buy2': 'Sotib olish',
+'card-buy3': 'Sotib olish',
+'card-buy4': 'Sotib olish',
+'view-more': 'Ko\'proq ko\'rsatish',
+'services-title': 'Bizning xizmatlar',
+'service1-title': 'SIM-karta sotish',
+'service1-desc': 'Rossiyaning yetakchi operatorlaridan premium raqamlarning keng tanlovi',
+'service2-title': 'Virtual raqamlar',
+'service2-desc': 'Virtual raqamga qo\'ng\'iroqlarni telefoningizga yo\'naltirish bilan qabul qiling',
+'service3-title': 'Qo\'ng\'iroq xizmati',
+'service3-desc': 'Premium raqamlar bilan bizning xizmatimiz orqali qo\'ng\'iroqlarni yuborish va qabul qilish',
+'service-learn-more': 'Batafsil',
+'service-learn-more2': 'Batafsil',
+'service-learn-more3': 'Batafsil',
+'testimonials-title': 'Mijozlar sharhlari',
+'testimonial1': 'Biznes uchun oltin raqam sotib oldim. Ajoyib xizmat, tez ro\'yxatdan o\'tish. Mijozlar darhol mening raqamimni eslab qolishadi!',
+'faq-title': 'Ko\'p so\'raladigan savollar',
+'faq1-q': 'SIM-kartani qanday sotib olish mumkin?',
+'faq1-a': 'Siz bizning saytimizda raqamni tanlashingiz, onlayn buyurtma berishingiz va SIM-kartani yetkazib berish orqali olishingiz yoki Moskvadagi ofislarimizdan birida olishingiz mumkin.',
+'faq2-q': 'Ro\'yxatdan o\'tish uchun qanday hujjatlar kerak?',
+'faq2-a': 'SIM-kartani ro\'yxatdan o\'tkazish uchun RF fuqarosi pasporti yoki ro\'yxatdan o\'tgan chet el fuqarosi pasporti kerak bo\'ladi.',
+'faq3-q': 'Virtual raqamlar xizmati qanday ishlaydi?',
+'faq3-a': 'Virtual raqam yo\'naltirish orqali ishlaydi. Virtual raqamingizga qo\'ng\'iroqlar avtomatik ravishda haqiqiy telefoningizga yo\'naltiriladi.',
+'tab-home': 'Asosiy',
+'tab-search': 'Qidiruv',
+'tab-cart': 'Savat',
+'tab-favorites': 'Sevimlilar',
+'tab-profile': 'Profil',
+'voice-assistant-title': 'Ovozli yordamchi',
+'voice-assistant-subtitle': 'Qanday yordam berishim mumkinligini ayting',
+'voice-cancel-text': 'Bekor qilish',
+'voice-stop-text': 'To\'xtatish',
+'search-input': 'Raqam qidirish'
+},
+tj: {
+'hero-title': 'Рақамҳои телефонии премиум',
+'hero-subtitle': 'Рақамҳои эксклюзивӣ барои мизоҷони махсус',
+'hero-button': 'Ёфтани рақам',
+'featured-title': 'Рақамҳои машҳур',
+'filter-all': 'Ҳама',
+'filter-platinum': 'Платинӣ',
+'filter-gold': 'Тиллоӣ',
+'filter-silver': 'Нуқрагин',
+'card1-tag': 'Тиллоӣ',
+'card2-tag': 'Нуқрагин',
+'card3-tag': 'Платинӣ',
+'card4-tag': 'Тиллоӣ',
+'card-buy': 'Харидан',
+'card-buy2': 'Харидан',
+'card-buy3': 'Харидан',
+'card-buy4': 'Харидан',
+'view-more': 'Нишон додани бештар',
+'services-title': 'Хизматҳои мо',
+'service1-title': 'Фурӯши SIM-корт',
+'service1-desc': 'Интихоби васеи рақамҳои премиум аз операторони пешсафи Русия',
+'service2-title': 'Рақамҳои виртуалӣ',
+'service2-desc': 'Қабули занг ба рақами виртуалӣ бо равона кардан ба телефони шумо',
+'service3-title': 'Хизмати занг',
+'service3-desc': 'Ирсол ва қабули зангҳо тавассути хизмати мо бо истифода аз рақамҳои премиум',
+'service-learn-more': 'Маълумоти бештар',
+'service-learn-more2': 'Маълумоти бештар',
+'service-learn-more3': 'Маълумоти бештар',
+'testimonials-title': 'Тақризҳои мизоҷон',
+'testimonial1': 'Барои тиҷорат рақами тиллоӣ харидам. Хизмати аъло, бақайдгирии зуд. Мизоҷон фавран рақами маро дар хотир мегиранд!',
+'faq-title': 'Саволҳои зиёд пурсидашаванда',
+'faq1-q': 'Чӣ тавр SIM-корт харидан мумкин аст?',
+'faq1-a': 'Шумо метавонед рақамро дар сайти мо интихоб кунед, фармоиши онлайн диҳед ва SIM-кортро бо расонидан гиред ё дар яке аз офисҳои мо дар Маскав гиред.',
+'faq2-q': 'Барои бақайдгирӣ кадом ҳуҷҷатҳо лозиманд?',
+'faq2-a': 'Барои бақайдгирии SIM-корт шиносномаи шаҳрванди ФР ё шаҳрванди хориҷӣ бо бақайдгирӣ лозим аст.',
+'faq3-q': 'Хизмати рақамҳои виртуалӣ чӣ тавр кор мекунад?',
+'faq3-a': 'Рақами виртуалӣ тавассути равона кардан кор мекунад. Зангҳо ба рақами виртуалии шумо ба таври худкор ба телефони воқеии шумо равона карда мешаванд.',
+'tab-home': 'Асосӣ',
+'tab-search': 'Ҷустуҷӯ',
+'tab-cart': 'Сабад',
+'tab-favorites': 'Дӯстдошта',
+'tab-profile': 'Профил',
+'voice-assistant-title': 'Ёрдамчии овозӣ',
+'voice-assistant-subtitle': 'Бигӯед, ки чӣ тавр ман метавонам кӯмак кунам',
+'voice-cancel-text': 'Бекор кардан',
+'voice-stop-text': 'Қатъ',
+'search-input': 'Ҷустуҷӯи рақам'
+}
+};
+// Toggle language dropdown
+languageSelector.addEventListener('click', function() {
+languageDropdown.classList.toggle('hidden');
+});
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+if (!languageSelector.contains(e.target) && !languageDropdown.contains(e.target)) {
+languageDropdown.classList.add('hidden');
+}
+});
+// Handle language selection
+languageOptions.forEach(option => {
+option.addEventListener('click', function() {
+const lang = this.getAttribute('data-lang');
+currentLangText.textContent = lang.toUpperCase();
+languageDropdown.classList.add('hidden');
+// Update all text content based on selected language
+const langData = translations[lang];
+for (const [key, value] of Object.entries(langData)) {
+const element = document.getElementById(key);
+if (element) {
+element.textContent = value;
+}
+}
+// Update placeholder for search input
+document.getElementById('search-input').placeholder = langData['search-input'];
+});
+});
+});
+</script>
+<script id="voice-assistant">
+document.addEventListener('DOMContentLoaded', function() {
+const voiceAssistantBtn = document.getElementById('voice-assistant-btn');
+const voiceAssistantModal = document.getElementById('voice-assistant-modal');
+const voiceCancelBtn = document.getElementById('voice-cancel');
+const voiceStopBtn = document.getElementById('voice-stop');
+voiceAssistantBtn.addEventListener('click', function() {
+voiceAssistantModal.classList.remove('hidden');
+});
+voiceCancelBtn.addEventListener('click', function() {
+voiceAssistantModal.classList.add('hidden');
+});
+voiceStopBtn.addEventListener('click', function() {
+voiceAssistantModal.classList.add('hidden');
+});
+});
+</script>
+<script id="search-and-filter">
+function filterByOperator(operator) {
+const numberCards = document.querySelectorAll('.number-card');
+numberCards.forEach(card => {
+const operatorTag = card.querySelector('.text-xs.font-medium:nth-child(2)');
+if (operator === 'all') {
+card.style.display = 'block';
+} else {
+const operatorText = operatorTag.textContent.toLowerCase();
+card.style.display = operatorText.includes(operator) ? 'block' : 'none';
+}
+});
+}
+document.getElementById('search-input').addEventListener('input', function(e) {
+const searchValue = e.target.value.toLowerCase();
+const numberCards = document.querySelectorAll('.number-card');
+numberCards.forEach(card => {
+const number = card.querySelector('p').textContent.toLowerCase();
+const operator = card.querySelector('.text-xs.font-medium:nth-child(2)').textContent.toLowerCase();
+if (number.includes(searchValue) || operator.includes(searchValue)) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+</script>
+<script id="faq-toggle">
+function toggleFaq(id) {
+const container = document.getElementById(`faq${id}-a-container`);
+const icon = document.getElementById(`faq${id}-icon`);
+container.classList.toggle('hidden');
+if (container.classList.contains('hidden')) {
+icon.classList.remove('ri-arrow-up-s-line');
+icon.classList.add('ri-arrow-down-s-line');
+} else {
+icon.classList.remove('ri-arrow-down-s-line');
+icon.classList.add('ri-arrow-up-s-line');
+}
+}
+</script>
+</body>
+</html>
